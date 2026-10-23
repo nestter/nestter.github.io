@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="previcon.png">
+<link rel="icon" type="image/webp" href="previcon.webp">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nestter — 3D modeler. Weapons, vehicles, props and characters. Open for commissions. Portfolio and links: ArtStation, Sketchfab, Boosty.">
 <title>Nestter</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <!-- Open Graph (опен граф)  -->
+  <!-- (Discord, VK, Telegram) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nestter.github.io/">
+  <meta property="og:title" content="Nestter — 3D Modeler">
+  <meta property="og:description" content="3D modeling of inanimate objects (vehicles, weapons, props), characters, and drawing. Open for commissions.">
+  <meta property="og:image" content="https://nestter.github.io/uaz.webp">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nestter — 3D Modeler">
+  <meta name="twitter:description" content="3D modeling of inanimate objects, characters, and drawing. Open for commissions.">
+  <meta name="twitter:image" content="https://nestter.github.io/uaz.webp">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400&family=Caveat:wght@400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -25,11 +40,12 @@
     overflow-x: hidden;
   }
 
+    /* Здесь меняем фон/бэкграунд */
   .bg {
     position: fixed;
     inset: 0;
     z-index: 0;
-    background-image: url('https://i.imgur.com/placeholder.jpg');
+    background-image: url('NikoPhone.webp');
     background-size: cover;
     background-position: center right;
     filter: brightness(0.22) saturate(0.6);
@@ -160,8 +176,8 @@
   .polaroid .cap {
     display: block;
     margin-top: 10px;
-    font-family: 'Comic Sans MS', monospace;
-    font-size: 1.2rem;
+    font-family: 'Caveat', cursive, monospace;
+    font-size: 2.2rem;
     letter-spacing: 0.08em;
     color: #2a2a2a;
     text-align: center;
@@ -191,6 +207,229 @@
     box-shadow: 0 20px 40px rgba(232,84,122,0.35);
   }
 
+  /* Projects — карточки проектов */
+  .projects {
+    width: 100%;
+    margin: 0 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeUp 1s ease 0.48s both;
+  }
+
+  .projects-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .projects-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin: 10px 0 0;
+  }
+
+  .projects-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .proj {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    background: rgba(5,20,20,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 5px;
+    transition: border-color 0.3s, transform 0.3s;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px;
+    transition: border-color 0.3s, transform 0.3s, background 0.3s;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .proj:hover {
+    border-color: var(--pink);
+    transform: translateY(-2px);
+
+  }
+
+  .proj.done { border-color: rgba(232,84,122,0.6); }
+
+  /* Необязательный фон: полупрозрачная картинка занимает правую половину карточки */
+  .proj.has-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40%;
+    background-image: var(--bg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    filter: saturate(0.6);
+    -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 100%);
+    mask-image: linear-gradient(to left, #000 0%, transparent 100%);
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .proj.has-bg:hover::before { opacity: 0.45; }
+
+  .proj-ico {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(232,84,122,0.4);
+    background: rgba(232,84,122,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .proj-ico svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--pink);
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .proj-body { flex: 1; min-width: 0; }
+
+  .proj-hd {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2px 12px;
+  }
+
+  .proj-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    color: #fff;
+    line-height: 1.2;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+  }
+
+  .proj-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;	
+    background: rgba(10, 10, 10, 0.55);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-shadow: none;
+  }
+
+  .proj-status.done { 
+    color: var(--pink); 
+    background: rgba(232, 84, 122, 0.15);
+    border-color: rgba(232, 84, 122, 0.3);
+  }
+
+  .proj-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .proj-dot.work { background: #5DCAA5; } /* в процессе */
+  .proj-dot.hold { background: #F0B93A; } /* отложен */
+  .proj-dot.drop { background: #E5484D; } /* заброшен */
+
+  .proj-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-top: 4px;
+  }
+
+  .proj-desc {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: #a09b96;
+    margin-top: 6px;
+  }
+
+  .proj-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .proj-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pink);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,84,122,0.4);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .proj-link:hover { color: var(--pink-light); border-color: var(--pink-light); }
+
+  .proj-sep {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 6px 0 -2px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .proj-sep::before,
+  .proj-sep::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
   .links {
     display: flex;
     flex-direction: row;
@@ -207,7 +446,7 @@
     align-items: center;
     gap: 7px;
     text-decoration: none;
-    color: var(--muted);
+    color: var(--text);
     transition: color 0.3s, transform 0.3s;
     cursor: pointer;
   }
@@ -221,8 +460,10 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
     background: rgba(255,255,255,0.03);
+    	backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -248,7 +489,7 @@
     text-transform: uppercase;
   }
 
-  /* Bottom deco */
+  /* Декоративные кнопки */
   .deco-bottom {
     width: 1px;
     height: 40px;
@@ -291,6 +532,16 @@
     90%  { opacity: 0.15; }
     100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
   }
+    /* Уменьшенная анимация для тех, у кого включена «уменьшить движение» */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .petal { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -308,24 +559,62 @@
     <div class="divider"></div>
 
     <p class="bio">
-Let`s get acquainted, traveler! In my free time, I model various inanimate objects (vehicles, weapons, props), create my own characters, and do a bit of drawing.
+Let’s get acquainted, traveler! In my free time, I model various inanimate objects (vehicles, weapons, props), create my own characters, and do a bit of drawing.
 I am available for short-term collaborations or one-off commissions.
     </p>
 
-    <!-- Portfolio: Рендеры работ -->
+    <!-- Портфолио: Рендеры работ -->
     <div class="portfolio">
       <div class="polaroid">
-        <img src="uaz.png" alt="UAZ 469">
+        <img src="uaz.webp" alt="UAZ 469" loading="lazy">
         <span class="cap">UAZ 469</span>
       </div>
       <div class="polaroid">
-        <img src="м4.png" alt="M4">
+        <img src="м4.webp" alt="M4" loading="lazy">
         <span class="cap">M4</span>
+      </div>
+    </div>
+
+    <!-- Проекты, в которых участвую -->
+    <div class="projects">
+      <div class="projects-title">Projects</div>
+      <div class="projects-sub">currently involved in</div>
+
+      <div class="projects-list">
+
+	<!-- Карточка с игрой Дока (Док) -->
+        <a class="proj has-bg" href="https://t.me/+3oyIM7yjxxtjNzMy" target="_blank" style="--bg: url('DOC.webp')">
+          <div class="proj-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="15.5" cy="11.5" r=".7"/><circle cx="18" cy="13.5" r=".7"/></svg></div>
+          <div class="proj-body">
+            <div class="proj-hd">
+              <span class="proj-name">Necromorphosis</span>
+              <span class="proj-status"><i class="proj-dot work"></i>in progress</span>
+            </div>
+            <div class="proj-role">3D modeler</div>
+            <div class="proj-desc">Weapons, vehicles, props</div>
+            <div class="proj-type">video game</div>
+          </div>
+        </a>
+
+	<!-- Карточка с Artifice -->
+        <a class="proj has-bg" href="https://github.com/iron431/irons-artifice" target="_blank" style="--bg: url('irons.webp')">
+          <div class="proj-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div>
+          <div class="proj-body">
+            <div class="proj-hd">
+              <span class="proj-name">Irons artifice</span>
+              <span class="proj-status"><i class="proj-dot hold"></i>on hold</span>
+            </div>
+            <div class="proj-role">Translator</div>
+            <div class="proj-desc">Translating the mod into Russian</div>
+            <div class="proj-type">Minecraft mod</div>
+          </div>
+        </a>
       </div>
     </div>
 
     <div class="links">
 
+    <!-- Странички -->
       <!-- ArtStation -->
       <a class="link-btn" href="https://artstation.com/nestter" target="_blank">
         <div class="icon-wrap">
@@ -397,7 +686,7 @@ I am available for short-term collaborations or one-off commissions.
       <!-- GitHub -->
       <a class="link-btn" href="https://github.com/nestter" target="_blank">
         <div class="icon-wrap">
-          <svg viewBox="0 0 24 24" <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Git</title><path d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/></svg>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Git</title><path d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/></svg>
         </div>
         <span class="link-label">GitHub</span>
       </a>
@@ -409,10 +698,6 @@ I am available for short-term collaborations or one-off commissions.
 </div>
 
 <script>
-  // Сюда вставляем фото (название + формат файла)
-  document.getElementById('bgEl').style.backgroundImage =
-    "url('NikoPhone.jpg')";
-
   // Падающие лепестки
   function makePetal() {
     const p = document.createElement('div');
@@ -427,8 +712,27 @@ I am available for short-term collaborations or one-off commissions.
     document.body.appendChild(p);
     setTimeout(() => p.remove(), (dur + 4) * 1000);
   }
-  setInterval(makePetal, 800);
-  for (let i = 0; i < 5; i++) makePetal();
+  // Лепестки не запускаются, если включено «уменьшить движение»
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let petalTimer = null;
+
+  function startPetals() {
+    if (petalTimer || reduceMotion.matches) return;
+    for (let i = 0; i < 5; i++) makePetal();
+    petalTimer = setInterval(makePetal, 800);
+  }
+
+  function stopPetals() {
+    clearInterval(petalTimer);
+    petalTimer = null;
+    document.querySelectorAll('.petal').forEach(p => p.remove());
+  }
+
+  reduceMotion.addEventListener('change', () => {
+    reduceMotion.matches ? stopPetals() : startPetals();
+  });
+
+  startPetals();
 </script>
 </body>
 </html>
