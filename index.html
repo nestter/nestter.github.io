@@ -4,22 +4,22 @@
 <link rel="icon" type="image/webp" href="previcon.webp">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Nestter — 3D modeler. Weapons, vehicles, props and characters. Open for commissions. Portfolio and links: ArtStation, Sketchfab, Boosty.">
+<meta name="description" content="Nestter — 3D modeler. Weapons, vehicles, props and characters. Open for commissions. Portfolio and key links.">
 <title>Nestter</title>
 
-  <!-- Open Graph (опен граф)  -->
-  <!-- (Discord, VK, Telegram) -->
+<!-- Open Graph (опен граф)  -->
+<!-- (Discord, VK, Telegram) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nestter.github.io/">
   <meta property="og:title" content="Nestter — 3D Modeler">
   <meta property="og:description" content="3D modeling of inanimate objects (vehicles, weapons, props), characters, and drawing. Open for commissions.">
   <meta property="og:image" content="https://nestter.github.io/uaz.webp">
-
-  <!-- Twitter / X -->
+<!-- Twitter / X  -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Nestter — 3D Modeler">
   <meta name="twitter:description" content="3D modeling of inanimate objects, characters, and drawing. Open for commissions.">
   <meta name="twitter:image" content="https://nestter.github.io/uaz.webp">
+
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400&family=Caveat:wght@400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +29,8 @@
     --pink-light: #f07a96;
     --dark: #0a0a0a;
     --text: #d0ccc8;
-    --muted: #6b6560;
+    --muted: #6b6060;
+    --prob: #547be8;
   }
 
   html, body {
@@ -40,7 +41,7 @@
     overflow-x: hidden;
   }
 
-    /* Здесь меняем фон/бэкграунд */
+  /* Здесь меняем фон/бэкграунд */
   .bg {
     position: fixed;
     inset: 0;
@@ -51,7 +52,7 @@
     filter: brightness(0.22) saturate(0.6);
   }
 
-  /* Grain overlay */
+  /* Зернистость */
   .bg::after {
     content: '';
     position: absolute;
@@ -61,7 +62,7 @@
     pointer-events: none;
   }
 
-  /* Vignette */
+  /* Виньетка */
   .vignette {
     position: fixed;
     inset: 0;
@@ -91,7 +92,7 @@
     animation: fadeUp 1s ease both;
   }
 
-  /* Decorative line */
+  /*Декоративная линия - вертикальная*/
   .deco-line {
     width: 1px;
     height: 60px;
@@ -99,19 +100,20 @@
     margin-bottom: 28px;
     animation: fadeUp 1s ease 0.1s both;
   }
-
+  /*Имя Несттер*/
   .name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 3.2rem;
     font-weight: 300;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #fff;
+    color:var(--text);
     line-height: 1;
     margin-bottom: 8px;
     animation: fadeUp 1s ease 0.2s both;
   }
 
+  /*3д моделер+заказы*/
   .tag {
     font-family: 'Space Mono', monospace;
     font-size: 0.68rem;
@@ -122,6 +124,7 @@
     animation: fadeUp 1s ease 0.3s both;
   }
 
+  /*Линия-разделитель - горизотальная*/
   .divider {
     width: 48px;
     height: 1px;
@@ -130,19 +133,20 @@
     animation: fadeUp 1s ease 0.35s both;
   }
 
+  /*Описание*/
   .bio {
     font-family: 'Space Mono', monospace;
     font-size: 1rem;
     font-weight: 300;
     line-height: 1.75;
     text-align: center;
-    color: #a09b96;
+    color: var(--text);
     max-width: 380px;
     margin-bottom: 40px;
     animation: fadeUp 1s ease 0.4s both;
   }
 
-  /* Portfolio — стопка фотографий */
+  /* Portfolio — стопка рендеров */
   .portfolio {
     position: relative;
     width: 100%;
@@ -207,7 +211,7 @@
     box-shadow: 0 20px 40px rgba(232,84,122,0.35);
   }
 
-  /* Projects — карточки проектов */
+  /*Карточки проектов*/
   .projects {
     width: 100%;
     margin: 0 0 40px;
@@ -217,25 +221,28 @@
     animation: fadeUp 1s ease 0.48s both;
   }
 
+  /*Слово проект*/
   .projects-title {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
     font-size: 1.8rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--text);
     line-height: 1;
   }
 
+  /*Участие*/
   .projects-sub {
     font-family: 'Space Mono', monospace;
     font-size: 0.62rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--pink);
+    color: var(--text);
     margin: 10px 0 0;
   }
 
+  /*Перечень проектов*/
   .projects-list {
     width: 100%;
     display: flex;
@@ -252,11 +259,8 @@
     align-items: flex-start;
     gap: 5px;
     background: rgba(5,20,20,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 5px;
-    transition: border-color 0.3s, transform 0.3s;
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 12px;
     padding: 14px;
@@ -269,10 +273,7 @@
   .proj:hover {
     border-color: var(--pink);
     transform: translateY(-2px);
-
   }
-
-  .proj.done { border-color: rgba(232,84,122,0.6); }
 
   /* Необязательный фон: полупрозрачная картинка занимает правую половину карточки */
   .proj.has-bg::before {
@@ -328,15 +329,16 @@
     gap: 2px 12px;
   }
 
+  /*Название проектов*/
   .proj-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.4rem;
     letter-spacing: 0.04em;
-    color: #fff;
+    color: var(--text);
     line-height: 1.2;
     text-shadow: 0 1px 8px rgba(0,0,0,0.7);
   }
-
+  /*Статус проектов*/
   .proj-status {
     display: flex;
     align-items: center;
@@ -345,18 +347,12 @@
     font-size: 0.62rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #fff;	
+    color: var(--text);	
     background: rgba(10, 10, 10, 0.55);
     padding: 4px 8px;
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     text-shadow: none;
-  }
-
-  .proj-status.done { 
-    color: var(--pink); 
-    background: rgba(232, 84, 122, 0.15);
-    border-color: rgba(232, 84, 122, 0.3);
   }
 
   .proj-dot {
@@ -366,10 +362,12 @@
     display: inline-block;
   }
 
-  .proj-dot.work { background: #5DCAA5; } /* в процессе */
-  .proj-dot.hold { background: #F0B93A; } /* отложен */
-  .proj-dot.drop { background: #E5484D; } /* заброшен */
+  .proj-dot.work { background: #5DCAA5; } /* в процессе - In progress*/
+  .proj-dot.hold { background: #F0B93A; } /* отложен - On hold*/
+  .proj-dot.drop { background: #E5484D; } /* заброшен - Drop*/
+  .proj-dot.final { background: #d109c0; } /* готовый - Realize*/
 
+  /*Роли в проекте*/
   .proj-role {
     font-family: 'Space Mono', monospace;
     font-size: 0.62rem;
@@ -378,15 +376,17 @@
     color: var(--pink);
     margin-top: 4px;
   }
-
+  
+  /*Описание проекта*/
   .proj-desc {
     font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
     line-height: 1.6;
-    color: #a09b96;
+    color: var(--text);
     margin-top: 6px;
   }
 
+  /*Тип проекта*/
   .proj-type {
     font-family: 'Space Mono', monospace;
     font-size: 0.62rem;
@@ -395,41 +395,7 @@
     margin-top: 8px;
   }
 
-  .proj-link {
-    display: inline-block;
-    margin-top: 10px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--pink);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(232,84,122,0.4);
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .proj-link:hover { color: var(--pink-light); border-color: var(--pink-light); }
-
-  .proj-sep {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 6px 0 -2px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .proj-sep::before,
-  .proj-sep::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: rgba(255,255,255,0.1);
-  }
-
+  /*Ссылки на соцсети*/
   .links {
     display: flex;
     flex-direction: row;
@@ -462,8 +428,8 @@
     border-radius: 50%;
     border: 1px solid rgba(255,255,255,0.15);
     background: rgba(255,255,255,0.03);
-    	backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+    	backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -489,7 +455,7 @@
     text-transform: uppercase;
   }
 
-  /* Декоративные кнопки */
+  /*Декоративная линия - вертикальная*/
   .deco-bottom {
     width: 1px;
     height: 40px;
@@ -498,6 +464,7 @@
     animation: fadeUp 1s ease 0.7s both;
   }
 
+  /*"Копирайт"*/
   .footer {
     font-family: 'Space Mono', monospace;
     font-size: 0.55rem;
@@ -532,7 +499,7 @@
     90%  { opacity: 0.15; }
     100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
   }
-    /* Уменьшенная анимация для тех, у кого включена «уменьшить движение» */
+  /* Уменьшенная анимация для тех, у кого включена «уменьшить движение» */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -542,23 +509,101 @@
     }
     .petal { display: none; }
   }
+  /* Стиль для предупреждения о старом браузере */
+  .browser-warning {
+    display: none; /* По умолчанию скрыто */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid var(--pink);
+    border-radius: 8px;
+    padding: 12px 20px;
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    max-width: 90%;
+    width: max-content;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    align-items: center;
+    gap: 16px;
+    backdrop-filter: blur(10px);
+  }
+
+  .browser-warning button {
+    background: none;
+    border: none;
+    color: var(--pink);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+  }
+
+  .browser-warning button:hover {
+    color: var(--text);
+  }
+
+  @media (max-width: 480px) {
+    .browser-warning { flex-direction: column; text-align: center; gap: 8px; }
+  }
+  /* Переключатель языка */
+  .lang {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    right: 12px;
+    z-index: 10;
+    display: flex;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 6px;
+    background: rgba(10, 10, 10, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  .lang button {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .lang button:hover { color: var(--text); }
+  .lang button.active { color: var(--pink); background: rgba(232, 84, 122, 0.15); }
 </style>
 </head>
 <body>
 
-<!-- BG image — Арты -->
-<div class="bg" id="bgEl"></div>
+  <!--BG image — Арты -->
+<div class="bg">
+</div>
 <div class="vignette"></div>
+
+  <!--Переключатель языка -->
+<div class="lang" role="group" aria-label="Language">
+  <button type="button" data-lang="en">EN</button>
+  <button type="button" data-lang="ru">RU</button>
+</div>
 
 <div class="page">
   <div class="card">
+ 
     <div class="deco-line"></div>
 
     <div class="name">Nestter</div>
-    <div class="tag">3D Modeler &nbsp;·&nbsp; Open for orders</div>
+    <div class="tag" data-i18n="tag">3D Modeler &nbsp;·&nbsp; Open for orders</div>
     <div class="divider"></div>
 
-    <p class="bio">
+    <p class="bio" data-i18n="bio">
 Let’s get acquainted, traveler! In my free time, I model various inanimate objects (vehicles, weapons, props), create my own characters, and do a bit of drawing.
 I am available for short-term collaborations or one-off commissions.
     </p>
@@ -575,10 +620,10 @@ I am available for short-term collaborations or one-off commissions.
       </div>
     </div>
 
-    <!-- Проекты, в которых участвую -->
+	<!-- Проекты, в которых участвую -->
     <div class="projects">
-      <div class="projects-title">Projects</div>
-      <div class="projects-sub">currently involved in</div>
+      <div class="projects-title" data-i18n="projects">Projects</div>
+      <div class="projects-sub" data-i18n="projects_sub">currently involved in</div>
 
       <div class="projects-list">
 
@@ -588,11 +633,11 @@ I am available for short-term collaborations or one-off commissions.
           <div class="proj-body">
             <div class="proj-hd">
               <span class="proj-name">Necromorphosis</span>
-              <span class="proj-status"><i class="proj-dot work"></i>in progress</span>
+              <span class="proj-status"><i class="proj-dot work"></i><span data-i18n="st_work">In progress</span></span>
             </div>
-            <div class="proj-role">3D modeler</div>
-            <div class="proj-desc">Weapons, vehicles, props</div>
-            <div class="proj-type">video game</div>
+            <div class="proj-role" data-i18n="role_3d">3D modeler</div>
+            <div class="proj-desc" data-i18n="desc_nec">Weapons, vehicles, props</div>
+            <div class="proj-type" data-i18n="type_game">video game</div>
           </div>
         </a>
 
@@ -602,11 +647,11 @@ I am available for short-term collaborations or one-off commissions.
           <div class="proj-body">
             <div class="proj-hd">
               <span class="proj-name">Irons artifice</span>
-              <span class="proj-status"><i class="proj-dot hold"></i>on hold</span>
+              <span class="proj-status"><i class="proj-dot hold"></i><span data-i18n="st_hold">On hold</span></span>
             </div>
-            <div class="proj-role">Translator</div>
-            <div class="proj-desc">Translating the mod into Russian</div>
-            <div class="proj-type">Minecraft mod</div>
+            <div class="proj-role" data-i18n="role_tr">Translator</div>
+            <div class="proj-desc" data-i18n="desc_irons">Translating the mod into Russian</div>
+            <div class="proj-type" data-i18n="type_mod">Minecraft mod</div>
           </div>
         </a>
       </div>
@@ -693,8 +738,14 @@ I am available for short-term collaborations or one-off commissions.
     </div>
 
     <div class="deco-bottom"></div>
-    <div class="footer">© nestter · 3d modeler</div>
+    <div class="footer" data-i18n="footer">© nestter · 3d modeler</div>
   </div>
+</div>
+
+  <!-- Предупреждение о старом браузере -->
+<div id="browser-warning" class="browser-warning">
+  <span data-i18n="warn">⚠️ Your browser is outdated. Some design elements (such as glass effects and images) may not display correctly. Please update your browser.</span>
+  <button onclick="document.getElementById('browser-warning').style.display='none'">✕</button>
 </div>
 
 <script>
@@ -733,6 +784,104 @@ I am available for short-term collaborations or one-off commissions.
   });
 
   startPetals();
+    // Проверка на поддержку современных CSS-фич (эффект стекла и пропорции)
+  function checkBrowserSupport() {
+    let isModern = true;
+
+    // Проверяем поддержку backdrop-filter (эффект матового стекла)
+    if (!window.CSS || !CSS.supports('backdrop-filter', 'blur(10px)') && !CSS.supports('-webkit-backdrop-filter', 'blur(10px)')) {
+      isModern = false;
+    }
+
+    // Проверяем поддержку aspect-ratio (пропорции картинок)
+    if (!window.CSS || !CSS.supports('aspect-ratio', '4 / 3')) {
+      isModern = false;
+    }
+
+    // Если браузер старый — показываем баннер
+    if (!isModern) {
+      const warning = document.getElementById('browser-warning');
+      warning.style.display = 'flex';
+    }
+  }
+
+  // Запускаем проверку после загрузки страницы
+  checkBrowserSupport();
+
+    // Переключение языка (EN / RU)
+  (function () {
+    const dict = {
+      en: {
+        title: 'Nestter',
+        desc: 'Nestter — 3D modeler. Weapons, vehicles, props and characters. Open for commissions. Portfolio and key links.',
+        tag: '3D Modeler &nbsp;·&nbsp; Open for orders',
+        bio: 'Let’s get acquainted, traveler! In my free time, I model various inanimate objects (vehicles, weapons, props), create my own characters, and do a bit of drawing.\nI am available for short-term collaborations or one-off commissions.',
+        projects: 'Projects',
+        projects_sub: 'currently involved in',
+        st_work: 'In progress',
+        st_hold: 'On hold',
+        role_3d: '3D modeler',
+        role_tr: 'Translator',
+        desc_nec: 'Weapons, vehicles, props',
+        desc_irons: 'Translating the mod into Russian',
+        type_game: 'video game',
+        type_mod: 'Minecraft mod',
+        footer: '© nestter · 3D modeler',
+        warn: '⚠️ Your browser is outdated. Some design elements (such as glass effects and images) may not display correctly. Please update or replace your browser.'
+      },
+      ru: {
+        title: 'Nestter',
+        desc: 'Nestter — 3D-моделлер. Оружие, транспорт, пропсы и персонажи. Открыт для заказов. Портфолио и основные ссылки.',
+        tag: '3D-моделлер &nbsp;·&nbsp; Открыт для заказов',
+        bio: 'Давай знакомиться, путник! В свободное время я моделирую разные неодушевлённые объекты (транспорт, оружие, пропы), создаю собственных персонажей и немного рисую.\nДоступен для временного найма и разовых заказов.',
+        projects: 'Проекты',
+        projects_sub: 'в которых участвую',
+        st_work: 'В процессе',
+        st_hold: 'Перерыв',
+        role_3d: '3D-моделлер',
+        role_tr: 'Переводчик',
+        desc_nec: 'Оружие, транспорт, пропы',
+        desc_irons: 'Перевод мода на русский язык',
+        type_game: 'Видеоигра',
+        type_mod: 'Minecraft мод',
+        footer: '© nestter · 3D-моделлер',
+        warn: '⚠️ Ваш браузер устарел. Некоторые элементы оформления (эффект стекла, изображения) могут отображаться неправильно. Пожалуйста, обновите или замените браузер.'
+      }
+    };
+
+    function detect() {
+      try {
+        const saved = localStorage.getItem('lang');
+        if (saved === 'en' || saved === 'ru') return saved;
+      } catch (e) {}
+      return (navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en';
+    }
+
+    function apply(lang) {
+      const d = dict[lang];
+      document.documentElement.lang = lang;
+      document.title = d.title;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', d.desc);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (d[key] !== undefined) el.innerHTML = d[key];
+      });
+      document.querySelectorAll('.lang button').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+        b.setAttribute('aria-pressed', b.dataset.lang === lang);
+      });
+    }
+
+    document.querySelectorAll('.lang button').forEach(b => {
+      b.addEventListener('click', () => {
+        apply(b.dataset.lang);
+        try { localStorage.setItem('lang', b.dataset.lang); } catch (e) {}
+      });
+    });
+
+    apply(detect());
+  })();
 </script>
 </body>
 </html>
