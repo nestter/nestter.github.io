@@ -427,7 +427,7 @@
     height: 52px;
     border-radius: 50%;
     border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.03);
+    background: rgba(20,20,20,0.65);
     	backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     display: flex;
@@ -579,6 +579,19 @@
   }
   .lang button:hover { color: var(--text); }
   .lang button.active { color: var(--pink); background: rgba(232, 84, 122, 0.15); }
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px) {
+  /* отключаем тяжёлый эффект стекла */
+  .proj, .icon-wrap, .lang {
+   backdrop-filter: none !important; 
+   -webkit-backdrop-filter: none !important;
+  }
+    /* Делаем фон карточек чуть плотнее, раз нет размытия */
+    .proj {
+      background: rgba(20, 20, 20, 0.85);
+    }
+}
 </style>
 </head>
 <body>
