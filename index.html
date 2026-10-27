@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/webp" href="previcon.webp">
+<link rel="icon" type="image/webp" href="images/previcon.webp">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Nestter — 3D modeler. Weapons, vehicles, props and characters. Open for commissions. Portfolio and key links.">
@@ -13,15 +13,63 @@
   <meta property="og:url" content="https://nestter.github.io/">
   <meta property="og:title" content="Nestter — 3D Modeler">
   <meta property="og:description" content="3D modeling of inanimate objects (vehicles, weapons, props), characters, and drawing. Open for commissions.">
-  <meta property="og:image" content="https://nestter.github.io/uaz.webp">
+  <meta property="og:image" content="https://nestter.github.io/images/uaz.webp">
 <!-- Twitter / X  -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Nestter — 3D Modeler">
   <meta name="twitter:description" content="3D modeling of inanimate objects, characters, and drawing. Open for commissions.">
-  <meta name="twitter:image" content="https://nestter.github.io/uaz.webp">
+  <meta name="twitter:image" content="https://nestter.github.io/images/uaz.webp">
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400&family=Caveat:wght@400&display=swap" rel="stylesheet">
 <style>
+   /* --- ЛОКАЛЬНЫЕ ШРИФТЫ --- */
+  
+  /* Cormorant Garamond */
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('fonts/cormorant-garamond-v21-cyrillic_latin-300.woff2') format('woff2'),
+        url('fonts/cormorant-garamond-v21-cyrillic_latin-300.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/cormorant-garamond-v21-cyrillic_latin-regular.woff2') format('woff2'),
+         url('fonts/cormorant-garamond-v21-cyrillic_latin-regular.ttf') format('truetype');
+
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('fonts/cormorant-garamond-v21-cyrillic_latin-600.woff2') format('woff2'),
+         url('fonts/cormorant-garamond-v21-cyrillic_latin-600.ttf') format('truetype');
+  }
+
+  /* Space Mono */
+  @font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/space-mono-v17-latin-regular.woff2') format('woff2'),
+        url('fonts/space-mono-v17-latin-regular.ttf') format('truetype');
+  }
+
+  /* Caveat */
+  @font-face {
+    font-family: 'Caveat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/caveat-v23-cyrillic_latin-regular.woff2') format('woff2'),
+         url('fonts/caveat-v23-cyrillic_latin-regular.ttf') format('truetype');
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -46,7 +94,7 @@
     position: fixed;
     inset: 0;
     z-index: 0;
-    background-image: url('NikoPhone.webp');
+    background-image: url('images/NikoPhone.webp');
     background-size: cover;
     background-position: center right;
     filter: brightness(0.22) saturate(0.6);
@@ -624,11 +672,11 @@ I am available for short-term collaborations or one-off commissions.
     <!-- Портфолио: Рендеры работ -->
     <div class="portfolio">
       <div class="polaroid">
-        <img src="uaz.webp" alt="UAZ 469" loading="lazy">
+        <img src="images/uaz.webp" alt="UAZ 469" loading="lazy">
         <span class="cap">UAZ 469</span>
       </div>
       <div class="polaroid">
-        <img src="м4.webp" alt="M4" loading="lazy">
+        <img src="images/m4.webp" alt="M4" loading="lazy">
         <span class="cap">M4</span>
       </div>
     </div>
@@ -641,7 +689,7 @@ I am available for short-term collaborations or one-off commissions.
       <div class="projects-list">
 
 	<!-- Карточка с игрой Дока (Док) -->
-        <a class="proj has-bg" href="https://t.me/+3oyIM7yjxxtjNzMy" target="_blank" style="--bg: url('DOC.webp')">
+        <a class="proj has-bg" href="https://t.me/+3oyIM7yjxxtjNzMy" target="_blank" style="--bg: url('images/DOC.webp')">
           <div class="proj-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="15.5" cy="11.5" r=".7"/><circle cx="18" cy="13.5" r=".7"/></svg></div>
           <div class="proj-body">
             <div class="proj-hd">
@@ -655,7 +703,7 @@ I am available for short-term collaborations or one-off commissions.
         </a>
 
 	<!-- Карточка с Artifice -->
-        <a class="proj has-bg" href="https://github.com/iron431/irons-artifice" target="_blank" style="--bg: url('irons.webp')">
+        <a class="proj has-bg" href="https://github.com/iron431/irons-artifice" target="_blank" style="--bg: url('images/irons.webp')">
           <div class="proj-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div>
           <div class="proj-body">
             <div class="proj-hd">
@@ -757,7 +805,7 @@ I am available for short-term collaborations or one-off commissions.
 
   <!-- Предупреждение о старом браузере -->
 <div id="browser-warning" class="browser-warning">
-  <span data-i18n="warn">⚠️ Your browser is outdated. Some design elements (such as glass effects and images) may not display correctly. Please update your browser.</span>
+  <span data-i18n="warn">⚠️ Your browser is outdated. Some design elements (such as glass effects, images and fonts) may not display correctly. Please update your browser.</span>
   <button onclick="document.getElementById('browser-warning').style.display='none'">✕</button>
 </div>
 
@@ -840,7 +888,7 @@ I am available for short-term collaborations or one-off commissions.
         type_game: 'video game',
         type_mod: 'Minecraft mod',
         footer: '© nestter · 3D modeler',
-        warn: '⚠️ Your browser is outdated. Some design elements (such as glass effects and images) may not display correctly. Please update or replace your browser.'
+        warn: '⚠️ Your browser is outdated. Some design elements (such as glass effects, images and fonts) may not display correctly. Please update or replace your browser.'
       },
       ru: {
         title: 'Nestter',
@@ -858,7 +906,7 @@ I am available for short-term collaborations or one-off commissions.
         type_game: 'Видеоигра',
         type_mod: 'Minecraft мод',
         footer: '© nestter · 3D-моделлер',
-        warn: '⚠️ Ваш браузер устарел. Некоторые элементы оформления (эффект стекла, изображения) могут отображаться неправильно. Пожалуйста, обновите или замените браузер.'
+        warn: '⚠️ Ваш браузер устарел. Некоторые элементы оформления (эффект стекла, изображения, шрифты) могут отображаться неправильно. Пожалуйста, обновите или замените браузер.'
       }
     };
 
