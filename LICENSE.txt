@@ -7,4 +7,4 @@ Space-Mono
 Cormorant Garamond 
 "Full license texts are located in the /fonts directory"
 
-Sound - game oneshot by 
+Sound - game oneshot by Future Cat LLC
