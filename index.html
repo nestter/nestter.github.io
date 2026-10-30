@@ -640,6 +640,61 @@
       background: rgba(20, 20, 20, 0.75);
     }
 }
+
+  /* --- Уведомление --- */
+  .easter-egg-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid var(--pink);
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 99999; /* Поверх всего */
+    
+    /* Скрыто по умолчанию */
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    
+    box-shadow: 0 10px 30px rgba(232, 84, 122, 0.2);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Класс, который включает видимость */
+  .easter-egg-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Иконка лампочки/солнца */
+  .easter-egg-icon {
+    font-size: 1.5rem;
+    animation: pulse-light 2s infinite;
+  }
+
+  .easter-egg-text {
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @keyframes pulse-light {
+    0%, 100% { opacity: 1; text-shadow: 0 0 10px var(--pink); }
+    50% { opacity: 0.6; text-shadow: none; }
+  }
+
+  @media (max-width: 480px) {
+    .easter-egg-toast {
+      bottom: 20px; right: 20px; left: 20px; /* Растягиваем на мобилках */
+      justify-content: center;
+    }
+  }
 </style>
 </head>
 <body>
@@ -809,6 +864,19 @@ I am available for short-term collaborations or one-off commissions.
   <button onclick="document.getElementById('browser-warning').style.display='none'">✕</button>
 </div>
 
+  <!-- Уведомление -->
+  <div id="easter-egg" class="easter-egg-toast">
+    <span class="easter-egg-icon">💡</span>
+    <span data-i18n="Nov">The light has returned...</span>
+  </div>
+
+  <!-- INTHERNET EXPLORER 11 ПРЕДУПРЕЖДЕНИЕ -->
+<!-- [if IE]>
+  <div class="browser-warning" style="display: flex;">
+    <span>⚠️ Вы используете устаревший Internet Explorer. Сайт может отображаться некорректно. Пожалуйста, скачайте современный браузер.</span>
+  </div>  -->
+![endif]
+
 <script>
   // Падающие лепестки
   function makePetal() {
@@ -888,7 +956,8 @@ I am available for short-term collaborations or one-off commissions.
         type_game: 'video game',
         type_mod: 'Minecraft mod',
         footer: '© nestter · 3D modeler',
-        warn: '⚠️ Your browser is outdated. Some design elements (such as glass effects, images and fonts) may not display correctly. Please update or replace your browser.'
+        warn: '⚠️ Your browser is outdated. Some design elements (such as glass effects, images and fonts) may not display correctly. Please update or replace your browser.',
+        Nov: 'The Sun has returned...'
       },
       ru: {
         title: 'Nestter',
@@ -906,7 +975,8 @@ I am available for short-term collaborations or one-off commissions.
         type_game: 'Видеоигра',
         type_mod: 'Minecraft мод',
         footer: '© nestter · 3D-моделлер',
-        warn: '⚠️ Ваш браузер устарел. Некоторые элементы оформления (эффект стекла, изображения, шрифты) могут отображаться неправильно. Пожалуйста, обновите или замените браузер.'
+        warn: '⚠️ Ваш браузер устарел. Некоторые элементы оформления (эффект стекла, изображения, шрифты) могут отображаться неправильно. Пожалуйста, обновите или замените браузер.',
+         Nov: 'Солнце возвращено...'
       }
     };
 
@@ -943,10 +1013,57 @@ I am available for short-term collaborations or one-off commissions.
 
     apply(detect());
   })();
+
+  console.log("%cПривет, путник!", "color: #e8547a; font-size: 20px; font-weight: bold; font-family: 'Space Mono';");
+console.log("%cТы нашел секретку. Моё почтение за твой неподдельный интерес! Больше искать здесь нечего!", "color: #d0ccc8; font-size: 12px; font-family: 'Space Mono';");
+
+  // --- NIKO ---
+  // Массив слов
+  const secretCodes = ["niko", "нико"]; 
+  let inputBuffer = "";
+  
+  const secretSound = new Audio('images/niko.mp3'); 
+  const eggToast = document.getElementById('easter-egg');
+
+  window.addEventListener("keydown", (e) => {
+    // Игнорируем, если пользователь печатает в поле ввода
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    // Игнорируем, если зажат Ctrl, Alt или Meta (Windows/Cmd). Shift оставляем, чтобы работал КАПС.
+    if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+      inputBuffer += e.key.toLowerCase();
+      
+      // Оставляем в памяти только последние 4 символа (длина слова "niko" и "нико" одинакова)
+      inputBuffer = inputBuffer.slice(-4); 
+
+      // Если введенный текст совпадает с одним из слов в массиве
+      if (secretCodes.includes(inputBuffer)) {
+        
+        // ПРОВЕРКА НА КУЛДАУН: 
+        // Если у уведомления УЖЕ есть класс 'show', значит оно на экране, и мы ничего не делаем.
+        if (!eggToast.classList.contains('show')) {
+          
+          // 1. Играем звук
+          secretSound.currentTime = 0; 
+          secretSound.play().catch(err => console.log("Звук не найден или заблокирован"));
+          
+          // 2. Показываем уведомление
+          eggToast.classList.add('show');
+          
+          // 3. Прячем уведомление через 3 секунды
+          setTimeout(() => {
+            eggToast.classList.remove('show');
+          }, 3000);
+        }
+        
+        // Буфер сбрасываем в любом случае, чтобы не копить символы
+        inputBuffer = ""; 
+      }
+    }
+  });
 </script>
 </body>
 </html>
-//ПАСХАЛКА
 <!--
 // сайт с иконками если кому надо - https://simpleicons.org/
 // .
