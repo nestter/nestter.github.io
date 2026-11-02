@@ -177,6 +177,7 @@ html, body {
   }
 }
 </style>
+<link rel="stylesheet" href="/terminal.css">
 </head>
 <body>
 
@@ -195,26 +196,8 @@ html, body {
   </main>
 </div>
 
-  <div id="custom-terminal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px;">
-    <div style="width: 100%; max-width: 600px; height: 400px; background: rgba(10, 10, 10, 0.95); border: 1px solid var(--pink); border-radius: 8px; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.8); overflow: hidden; font-family: 'Space Mono', monospace;">
-      
-      <div style="background: rgba(232, 84, 122, 0.1); padding: 10px 15px; border-bottom: 1px solid rgba(232, 84, 122, 0.3); display: flex; justify-content: space-between; color: var(--pink); font-size: 0.8rem; letter-spacing: 0.1em;">
-        <span>NESTTER_OS / RECOVERY MODE</span>
-        <span style="cursor: pointer;" onclick="closeTerminal()">[X] CLOSE</span>
-      </div>
-
-      <div id="term-output" style="flex: 1; padding: 15px; overflow-y: auto; color: var(--text); font-size: 0.85rem; line-height: 1.6;">
-        <div>System lost in the void.</div>
-        <div>Type '/help' to see available recovery commands.</div>
-      </div>
-
-      <div style="display: flex; padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.5);">
-        <span style="color: var(--pink); margin-right: 10px;">></span>
-        <input type="text" id="term-input" autocomplete="off" spellcheck="false" style="flex: 1; background: transparent; border: none; outline: none; color: #fff; font-family: 'Space Mono', monospace; font-size: 0.85rem;">
-      </div>
-      
-    </div>
-  </div>
+<!-- Терминал создаётся скриптом /terminal.js -->
+<script src="/terminal.js"></script>
 
 <script>
 (function () {
@@ -252,82 +235,29 @@ html, body {
   });
 })();
 
-  const termOverlay = document.getElementById('custom-terminal');
-  const termInput = document.getElementById('term-input');
-  const termOutput = document.getElementById('term-output');
-
-  // Защита от XSS
-  function esc(s) {
-    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-
-  function openTerminal() {
-    termOverlay.style.display = 'flex';
-    termInput.value = ''; 
-    setTimeout(() => { termInput.focus(); }, 50);
-  }
-
-  function closeTerminal() {
-    termOverlay.style.display = 'none';
-    termInput.blur(); 
-  }
-
-  const terminalCommands = {
-    "/home": () => {
-      termOutput.innerHTML += `<div style="color: #5DCAA5;">Escaping the void... Returning to reality.</div>`;
-      setTimeout(() => { 
-        window.location.href = '/'; // Возврат на главную
-      }, 1000);
-    },
-    "/help": () => {
-      termOutput.innerHTML += `
-        <div style="color: var(--pink); margin-top: 8px;">Available recovery commands:</div>
-        <div>- <span style="color: #5DCAA5;">/home</span> : Return to main page</div>
-        <div>- <span style="color: #5DCAA5;">/clear</span> : Clear terminal</div>
-        <div>- <span style="color: #5DCAA5;">/exit</span> : Close terminal</div>
-      `;
-    },
-    "/clear": () => {
-      termOutput.innerHTML = ""; 
-    },
-    "/exit": () => {
-      closeTerminal(); 
-    }
-  };
-
-  termInput.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-      const command = termInput.value.trim();
-      termInput.value = ""; 
-      
-      if (command === "") return;
-
-      termOutput.innerHTML += `<div style="margin-top: 8px;"><span style="color: var(--pink);">></span> ${esc(command)}</div>`;
-      
-      if (Object.prototype.hasOwnProperty.call(terminalCommands, command)) {
-        terminalCommands[command]();
-      } else {
-        termOutput.innerHTML += `<div style="color: #E5484D;">Unknown command: ${esc(command)}. Type '/help' for a list.</div>`;
+  // --- Терминал: движок в /terminal.js, здесь только команды этой страницы ---
+  if (window.Terminal) {
+    Terminal.init({
+      title: 'NESTTER_OS / RECOVERY MODE',
+      greeting: ['System lost in the void.', "Type '/help' to see available recovery commands."],
+      triggers: ['log', 'дщп'],
+      commands: {
+        "/home": (t) => {
+          t.line('Escaping the void... Returning to reality.', 'ok');
+          setTimeout(() => { window.location.href = '/'; }, 1000);
+        },
+        "/help": (t) => {
+          t.help('Available recovery commands:', [
+            ['/home', 'Return to main page'],
+            ['/clear', 'Clear terminal'],
+            ['/exit', 'Close terminal']
+          ]);
+        },
+        "/clear": (t) => t.clear(),
+        "/exit": (t) => t.close()
       }
-      termOutput.scrollTop = termOutput.scrollHeight;
-    }
-  });
-
-  termInput.addEventListener('keydown', e => { if (e.key === 'Escape') closeTerminal(); });
-
-  let logBuffer = "";
-  window.addEventListener("keydown", (e) => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    if (e.key.length !== 1 || e.ctrlKey || e.altKey || e.metaKey) return;
-
-    const key = e.key.toLowerCase();
-    logBuffer = (logBuffer + key).slice(-3);
-    
-    if (logBuffer === "log" || logBuffer === "дщп") {
-      openTerminal();
-      logBuffer = "";
-    }
-  });
+    });
+  }
 </script>
 
 </body>

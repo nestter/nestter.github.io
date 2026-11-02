@@ -1,0 +1,187 @@
+/* terminal.css — общий вид терминала для index.html и 404.html
+   Использует переменные цвета и шрифт страницы (--pink, --text, --muted, Space Mono);
+   запасные значения заданы на случай, если страница их не определяет. */
+
+/* terminal.css */
+.term-overlay,
+.term-overlay * { box-sizing: border-box; }
+
+.term-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(5, 5, 5, 0.85);
+  /* Убрали backdrop-filter: blur(10px); — это главная причина лагов */
+}
+
+.term-overlay.open { display: flex; }
+
+.term-window {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid var(--pink, #e8547a);
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  font-family: 'Space Mono', monospace;
+  /* Добавляем will-change для плавности перетаскивания */
+  will-change: transform;
+}
+
+.term-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: rgba(232, 84, 122, 0.1);
+  border-bottom: 1px solid rgba(232, 84, 122, 0.3);
+  color: var(--pink, #e8547a);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  
+  /* Стили для перетаскивания */
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.term-header.dragging { cursor: grabbing; }
+
+.term-close {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.term-close:hover,
+.term-close:focus-visible {
+  color: var(--pink-light, #f07a96);
+  outline: none;
+}
+
+.term-output {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  color: var(--text, #d0ccc8);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.term-inputrow {
+  display: flex;
+  padding: 15px;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px)); 
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.term-prompt {
+  margin-right: 10px;
+  color: var(--pink, #e8547a);
+}
+
+.term-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+}
+
+
+  /* --- Уведомление --- */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid var(--pink);
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999999; /* Поверх всего */
+    
+    /* Скрыто по умолчанию */
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    
+    box-shadow: 0 10px 30px rgba(232, 84, 122, 0.2);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Класс, который включает видимость */
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Иконка лампочки/солнца */
+  .icon {
+    font-size: 1.5rem;
+    animation: pulse-light 2s infinite;
+  }
+
+  @keyframes pulse-light {
+    0%, 100% { opacity: 1; text-shadow: 0 0 10px var(--pink); }
+    50% { opacity: 0.6; text-shadow: none; }
+  }
+
+  @media (max-width: 480px) {
+    .toast {
+      bottom: 20px; right: 20px; left: 20px; /* Растягиваем на мобилках */
+      justify-content: center;
+    }
+  }
+  
+  #room button:hover {
+    border-color: var(--pink);
+    color: var(--pink);
+    box-shadow: 0 0 15px rgba(232, 84, 122, 0.2);
+  }
+
+@keyframes roomAppear {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95) translateY(20px); 
+    filter: blur(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+    filter: blur(0); 
+  }
+}
+
+.room-animate {
+  animation: roomAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Строки вывода */
+.t-gap    { margin-top: 8px; }
+.t-text   { color: var(--text, #d0ccc8); }
+.t-muted  { color: var(--muted, #6b6060); }
+.t-accent { color: var(--pink, #e8547a); }
+.t-ok     { color: #5DCAA5; }
+.t-warn   { color: #F0B93A; }
+.t-err    { color: #E5484D; }

@@ -20,6 +20,7 @@
   <meta name="twitter:description" content="3D modeling of inanimate objects, characters, and drawing. Open for commissions.">
   <meta name="twitter:image" content="https://nestter.github.io/images/uaz.webp">
 
+<link rel="stylesheet" href="terminal.css">
 <style>
    /* --- ЛОКАЛЬНЫЕ ШРИФТЫ --- */
   
@@ -523,23 +524,6 @@
     animation: fadeUp 1s ease 0.8s both;
   }
   
-  @keyframes roomAppear {
-    from {
-      opacity: 0;
-      transform: scale(0.95) translateY(20px);
-      filter: blur(10px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-      filter: blur(0);
-    }
-  }
-
-  /* Класс, который запускает анимацию */
-  .room-animate {
-    animation: roomAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -657,60 +641,6 @@
       background: rgba(20, 20, 20, 0.75);
     }
 }
-
-  /* --- Уведомление --- */
-  .toast {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: rgba(15, 15, 15, 0.95);
-    border: 1px solid var(--pink);
-    border-radius: 8px;
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    z-index: 9999999; /* Поверх всего */
-    
-    /* Скрыто по умолчанию */
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    
-    box-shadow: 0 10px 30px rgba(232, 84, 122, 0.2);
-    font-family: 'Space Mono', monospace;
-  }
-
-  /* Класс, который включает видимость */
-  .toast.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Иконка лампочки/солнца */
-  .icon {
-    font-size: 1.5rem;
-    animation: pulse-light 2s infinite;
-  }
-
-  @keyframes pulse-light {
-    0%, 100% { opacity: 1; text-shadow: 0 0 10px var(--pink); }
-    50% { opacity: 0.6; text-shadow: none; }
-  }
-
-  @media (max-width: 480px) {
-    .toast {
-      bottom: 20px; right: 20px; left: 20px; /* Растягиваем на мобилках */
-      justify-content: center;
-    }
-  }
-  
-  #room button:hover {
-    border-color: var(--pink);
-    color: var(--pink);
-    box-shadow: 0 0 15px rgba(232, 84, 122, 0.2);
-  }
 </style>
 </head>
 <body>
@@ -880,27 +810,6 @@ I am available for short-term collaborations or one-off commissions.
   <button onclick="document.getElementById('browser-warning').style.display='none'">✕</button>
 </div>
 
-  <!-- Уведомление -->
-  <div id="sun" class="toast">
-    <span class="icon">💡</span>
-    <span data-i18n="Nov">The light has returned...</span>
-  </div>
-
-  <div id="room" style="display: none; position: fixed; inset: 0; z-index: 999999; background: var(--dark); color: var(--text); align-items: center; justify-content: center; flex-direction: column; padding: 24px; text-align: center;">
-    
-    <h1 style="animation: roomAppear 0.6s ease 0.2s forwards; opacity: 0; font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--pink); margin-bottom: 20px; letter-spacing: 0.1em;">THE VO$D</h1>
-    <p style="animation: roomAppear 0.6s ease 0.2s forwards; opacity: 0; font-family: 'Space Mono', monospace; font-size: 0.9rem; max-width: 400px; line-height: 1.6; color: var(--muted); margin-bottom: 40px;">
-      You have found the secret room.<br><br>
-      (Ты нашел секретную комнату.)
-    </p>
-    
-    <div style="animation: roomAppear 0.6s ease 0.2s forwards; opacity: 0; width: 100px; height: 1px; background: var(--pink); margin-bottom: 40px;"></div>
-    
-    <button onclick="window.location.hash = ''" style="animation: roomAppear 0.6s ease 0.2s forwards; opacity: 0; font-family: 'Space Mono', monospace; background: transparent; border: 1px solid var(--muted); color: var(--text); padding: 12px 24px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease;">
-      RETURN TO REALITY
-    </button>
-  </div>
-
   <!-- INTHERNET EXPLORER 11 ПРЕДУПРЕЖДЕНИЕ -->
 <!--[if IE]>
   <div class="browser-warning" style="display: flex;">
@@ -908,31 +817,8 @@ I am available for short-term collaborations or one-off commissions.
   </div> 
 <![endif]-->
 
-  <!-- КАСТОМНАЯ КОНСОЛЬ -->
-  <div id="custom-terminal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px;">
-    
-    <div style="width: 100%; max-width: 600px; height: 400px; background: rgba(10, 10, 10, 0.95); border: 1px solid var(--pink); border-radius: 8px; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.8); overflow: hidden; font-family: 'Space Mono', monospace;">
-      
-      <!-- Шапка консоли -->
-      <div style="background: rgba(232, 84, 122, 0.1); padding: 10px 15px; border-bottom: 1px solid rgba(232, 84, 122, 0.3); display: flex; justify-content: space-between; color: var(--pink); font-size: 0.8rem; letter-spacing: 0.1em;">
-        <span>NESTTER_OS v1.5</span>
-        <span style="cursor: pointer;" onclick="closeTerminal()">[X] CLOSE</span>
-      </div>
-
-      <!-- Окно вывода текста -->
-      <div id="term-output" style="flex: 1; padding: 15px; overflow-y: auto; color: var(--text); font-size: 0.85rem; line-height: 1.6;">
-        <div>System initialized...</div>
-        <div>Awaiting input...</div>
-      </div>
-
-      <!-- Строка ввода -->
-      <div style="display: flex; padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.5);">
-        <span style="color: var(--pink); margin-right: 10px;">></span>
-        <input type="text" id="term-input" autocomplete="off" spellcheck="false" style="flex: 1; background: transparent; border: none; outline: none; color: #fff; font-family: 'Space Mono', monospace; font-size: 0.85rem;">
-      </div>
-      
-    </div>
-  </div>
+  <!-- Терминал создаётся скриптом terminal.js -->
+<script src="terminal.js"></script>
 
 <script>
   // Падающие лепестки
@@ -1020,7 +906,7 @@ I am available for short-term collaborations or one-off commissions.
         type_mod: 'Minecraft mod',
         footer: '© nestter · 3D modeler',
         warn: '⚠️ Your browser is outdated. Some design elements (such as glass effects, images and fonts) may not display correctly. Please update or replace your browser.',
-        Nov: 'The Sun has returned...'
+        sun: 'The Sun has returned...' // 
       },
       ru: {
         title: 'Nestter',
@@ -1039,7 +925,7 @@ I am available for short-term collaborations or one-off commissions.
         type_mod: 'Minecraft мод',
         footer: '© nestter · 3D-моделлер',
         warn: '⚠️ Ваш браузер устарел. Некоторые элементы оформления (эффект стекла, изображения, шрифты) могут отображаться неправильно. Пожалуйста, обновите или замените браузер.',
-         Nov: 'Солнце возвращено...'
+        sun: 'Солнце возвращено...' 
       }
     };
 
@@ -1066,7 +952,7 @@ I am available for short-term collaborations or one-off commissions.
         b.setAttribute('aria-pressed', b.dataset.lang === lang);
       });
     }
-
+      window.applyLang = apply;
     document.querySelectorAll('.lang button').forEach(b => {
       b.addEventListener('click', () => {
         apply(b.dataset.lang);
@@ -1079,177 +965,10 @@ I am available for short-term collaborations or one-off commissions.
 
   console.log("%cПривет, путник!", "color: #e8547a; font-size: 20px; font-weight: bold; font-family: 'Space Mono';");
   console.log("%cТы нашел секретку. Моё почтение за твой неподдельный интерес! Больше искать здесь нечего!", "color: #d0ccc8; font-size: 12px; font-family: 'Space Mono';");
-
-
-  const Sound = new Audio('images/niko.mp3');
-  Sound.preload = 'none'; 
-  const sunToast = document.getElementById('sun');
   
-  let nikoBuffer = "";
-  let logBuffer = "";
-
-
-  window.addEventListener("keydown", (e) => {
-
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    // Игнорируем служебные клавиши
-    if (e.key.length !== 1 || e.ctrlKey || e.altKey || e.metaKey) return;
-
-    const key = e.key.toLowerCase();
-
-    nikoBuffer = (nikoBuffer + key).slice(-4);
-    if (nikoBuffer === "niko" || nikoBuffer === "нико") {
-      triggerNiko();
-      nikoBuffer = "";
-    }
-
-    logBuffer = (logBuffer + key).slice(-3);
-    if (logBuffer === "log" || logBuffer === "дщп") {
-      openTerminal();
-      logBuffer = "";
-    }
-  });
-
-  function triggerNiko() {
-    if (!sunToast.classList.contains('show')) {
-      Sound.currentTime = 0;
-      Sound.play().catch(err => console.log("Звук не найден"));
-      sunToast.classList.add('show');
-      setTimeout(() => { sunToast.classList.remove('show'); }, 3000);
-    }
-  }
-
-  const termOverlay = document.getElementById('custom-terminal');
-  const termInput = document.getElementById('term-input');
-  const termOutput = document.getElementById('term-output');
-
-  function openTerminal() {
-    termOverlay.style.display = 'flex';
-
-    termInput.value = ''; 
-
-    setTimeout(() => {
-      termInput.focus();
-    }, 50);
-  }
-
-  function closeTerminal() {
-    termOverlay.style.display = 'none';
-    termInput.blur(); // Снимаем фокус, чтобы клавиатура снова работала на сайте
-  }
-
-  function esc(s) {
-  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-
-  const terminalCommands = {
-    "/niko": () => {
-      termOutput.innerHTML += `<div style="color: #5DCAA5;">Light returned...</div>`;
-      triggerNiko();
-    },
-    
-    "/void": () => {
-      termOutput.innerHTML += `<div style="color: #E5484D;">Accessing the void... Please wait.</div>`;
-      setTimeout(() => { 
-        closeTerminal(); 
-        window.location.hash = 'V0$D'; 
-      }, 1000);
-    },
-    
-    "/warn": () => {
-      termOutput.innerHTML += `<div style="color: #F0B93A;">[WARNING] System anomaly detected. Showing alert...</div>`;
-      document.getElementById('browser-warning').style.display = 'flex';
-    },
-
-     "/404": () => {
-           termOutput.innerHTML += `<div style="color: #E5484D;">Simulating system failure... Redirecting to the void.</div>`;
-      setTimeout(() => { 
-        window.location.href = '/HE&LП MИ PЛIASE'; 
-      }, 1000);
-    },
-    
-    "/help": () => {
-      termOutput.innerHTML += `
-        <div style="color: var(--pink); margin-top: 8px;">Available commands:</div>
-        <div>- <span style="color: #5DCAA5;">/niko</span> : Call the sun</div>
-        <div>- <span style="color: #5DCAA5;">/warn</span> : Trigger system warning</div>
-        <div>- <span style="color: #5DCAA5;">/about</span> : Show system info</div>
-        <div>- <span style="color: #5DCAA5;">/clear</span> : Clear terminal</div>
-        <div>- <span style="color: #5DCAA5;">/exit</span> : Close terminal</div>
-        <div>- <span style="color: #5DCAA5;">/0x194</span> : ERROR FOUND</div>
-        <div>- <span style="color: #5DCAA5;">/56_6F_69_64</span> : CRITICAL ERROR FOUND</div>
-      `;
-    },
-    
-    "/about": () => {
-      termOutput.innerHTML += `
-        <div style="color: var(--text); margin-top: 8px;">NESTTER_OS v1.0</div>
-        <div style="color: var(--muted);">3D Modeler Portfolio. Built with pure HTML/CSS/JS.</div>
-      `;
-    },
-    
-    "/clear": () => {
-      termOutput.innerHTML = ""; 
-    },
-    
-    "/exit": () => {
-      closeTerminal(); 
-    }
-  };  
-
-  termInput.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-      const command = termInput.value.trim();
-      termInput.value = ""; 
-      
-      if (command === "") return;
-
-      termOutput.innerHTML += `<div style="margin-top: 8px;"><span style="color: var(--pink);">></span> ${esc(command)}</div>`;
-
-      if (Object.prototype.hasOwnProperty.call(terminalCommands, command)) {
-        terminalCommands[command]();
- }    else {
-        termOutput.innerHTML += `<div style="color: #E5484D;">Unknown command: ${esc(command)}. Type '/help' for a list.</div>`;
-      }
-
-      termOutput.scrollTop = termOutput.scrollHeight;
-    }
-  });
-
-  function toggleRoom() {
-    const room = document.getElementById('room');
-    const mainPage = document.querySelector('.page');
-    const langSwitcher = document.querySelector('.lang');
-
-    if (window.location.hash === '#V0$D') {
-      mainPage.style.display = 'none';
-      langSwitcher.style.display = 'none';
-      room.style.display = 'flex';
-
-      
-
-      room.style.display = 'flex';
-      room.classList.remove('room-animate');
-      setTimeout(() => {
-        room.classList.add('room-animate');
-      }, 10);
-
-      closeTerminal(); // На всякий случай закрываем терминал при переходе
-
-    } else {
-      mainPage.style.display = 'flex';
-      langSwitcher.style.display = 'flex';
-      room.classList.remove('room-animate');
-      room.style.display = 'none';
-    }
-  }
-
-  window.addEventListener('hashchange', toggleRoom);
-  toggleRoom(); // Проверяем хэш при загрузке страницы
-
-termInput.addEventListener('keydown', e => { if (e.key === 'Escape') closeTerminal(); });
-
 </script>
+  <!-- Терминал создаётся скриптом terminal.js, пасхалки — в othet.js -->
+  <script src="other.js"></script>
 </body>
 </html>
 <!--
