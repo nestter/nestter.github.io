@@ -35,7 +35,8 @@
 
   // 2. Логика звука и уведомления NIKO
   const Sound = new Audio('images/niko.mp3');
-  Sound.preload = 'none';
+  Sound.preload = 'auto';
+  Sound.load();             
   const sunToast = document.getElementById('sun');
 
   function triggerNiko() {
