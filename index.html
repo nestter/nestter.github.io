@@ -494,11 +494,17 @@
     color: var(--text);
     transition: color 0.3s, transform 0.3s;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
 
   .link-btn:hover {
     color: var(--pink-light);
     transform: translateY(-4px);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
 
   .icon-wrap {
@@ -513,6 +519,9 @@
     align-items: center;
     justify-content: center;
     transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
 
   .link-btn:hover .icon-wrap {
@@ -525,6 +534,9 @@
     width: 22px;
     height: 22px;
     fill: currentColor;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
 
   .link-label {
@@ -532,6 +544,9 @@
     font-size: 0.6rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
 
   /*Декоративная линия - вертикальная*/
@@ -614,6 +629,9 @@
     align-items: center;
     gap: 16px;
     backdrop-filter: blur(10px);
+    user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
   }
 
   .browser-warning button {
@@ -647,6 +665,9 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
   .lang button {
     font-family: 'Space Mono', monospace;
@@ -659,6 +680,9 @@
     padding: 4px 8px;
     cursor: pointer;
     transition: color 0.2s ease, background 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
   .lang button:hover { color: var(--text); }
   .lang button.active { color: var(--pink); background: rgba(232, 84, 122, 0.15); }
@@ -1001,8 +1025,7 @@ I am available for short-term collaborations or one-off commissions.
   console.log("%cТы нашел секретку. Моё почтение за твой неподдельный интерес! Больше искать здесь нечего!", "color: #d0ccc8; font-size: 12px; font-family: 'Space Mono';");
   
 </script>
-  <!-- Терминал создаётся скриптом terminal.js, пасхалки — в othet.js -->
-  <script src="other.js"></script>
+<script src="other.js"></script>
 </body>
 </html>
 <!--
