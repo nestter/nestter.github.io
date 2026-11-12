@@ -1,4 +1,3 @@
-/* other.js — все секреты сайта */
 
 (function() {
   // 1. Внедряем HTML для уведомления и комнаты прямо в DOM
@@ -24,10 +23,9 @@
   document.body.insertAdjacentHTML('beforeend', RoomHTML);
 
   // Принудительно применяем текущий язык к только что созданному HTML
-  const currentLang = localStorage.getItem('lang') || 'en';
-  if (window.applyLang) {
-    window.applyLang(currentLang);
-  }
+if (window.applyLang) {
+  window.applyLang(document.documentElement.lang === 'ru' ? 'ru' : 'en');
+}
 
   // Показываем скрытые элементы (они были display: none для HTML)
   document.getElementById('sun').style.display = 'flex';
@@ -155,6 +153,8 @@
         secretClicks = 0;
       }
       setTimeout(() => { secretClicks = 0; }, 1000);
+
+      
     });
   }
 })();

@@ -1,7 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="notFound">
 <head>
 <meta charset="UTF-8">
+
+<!-- Язык + анти-FOUC: до первого рендера -->
+<script>
+(function () {
+  var lang = 'en';
+  try {
+    var s = localStorage.getItem('lang');
+    if (s === 'en' || s === 'ru') lang = s;
+    else lang = (navigator.language || '').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en';
+  } catch (e) {}
+  document.documentElement.lang = lang;
+  document.documentElement.classList.add('i18n-loading');
+  setTimeout(function () {
+    document.documentElement.classList.remove('i18n-loading');
+  }, 2500);
+})();
+</script>
+<style>html.i18n-loading body { visibility: hidden; }</style>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>404 — Nestter</title>
@@ -97,7 +116,6 @@ html, body {
   margin-bottom: 28px;
 }
 
-/* Три цифры: единственный крупный элемент страницы */
 .code {
   font-size: clamp(4.5rem, 22vw, 7rem);
   font-weight: 300;
@@ -105,6 +123,9 @@ html, body {
   line-height: 1;
   padding-left: 0.18em;
   color: var(--text);
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
 }
 
 .runes {
@@ -114,6 +135,9 @@ html, body {
   padding-left: 0.3em;
   color: var(--pink);
   margin-top: 18px;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
 }
 
 .divider {
@@ -129,6 +153,9 @@ html, body {
   letter-spacing: 0.06em;
   line-height: 1.25;
   color: var(--text);
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
 }
 
 .note {
@@ -138,6 +165,9 @@ html, body {
   color: var(--text);
   max-width: 320px;
   margin-top: 12px;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
 }
 
 .home {
@@ -154,15 +184,55 @@ html, body {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   transition: border-color 0.3s, color 0.3s, transform 0.3s;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
 }
 
 .home:hover,
+
 .home:focus-visible {
   border-color: var(--pink);
   color: var(--pink-light);
   transform: translateY(-2px);
   outline: none;
 }
+
+ /* Переключатель языка */
+  .lang {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    right: 12px;
+    z-index: 10;
+    display: flex;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 6px;
+    background: rgba(10, 10, 10, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+  }
+  .lang button {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+  }
+  .lang button:hover { color: var(--text); }
+  .lang button.active { color: var(--pink); background: rgba(232, 84, 122, 0.15); }
 
 @keyframes appear {
   from { opacity: 0; transform: translateY(16px); }
@@ -184,56 +254,30 @@ html, body {
 <div class="bg"></div>
 <div class="vignette"></div>
 
+
+  <!--Переключатель языка -->
+<div class="lang" role="group" aria-label="Language">
+  <button type="button" data-lang="en">EN</button>
+  <button type="button" data-lang="ru">RU</button>
+  
+</div>
+
 <div class="page">
   <main class="card">
     <div class="deco-line"></div>
-    <div class="code">404</div>
+    <div class="code" >404</div>
     <div class="runes" aria-hidden="true">lost log</div>
     <div class="divider"></div>
-    <h1 class="title" data-i18n="title">Page not found</h1>
-    <p class="note" data-i18n="note">The link may be outdated, or the page was moved.</p>
-    <a class="home" href="/" data-i18n="home">Back to home</a>
+    <h1 class="title" data-i18n="titlen">Page not found</h1>
+    <p class="note" data-i18n="note">The link may be outdated, or the page was moved</p>
+    <a class="home" href="/" data-i18n="home">Go to home</a>
   </main>
 </div>
 
-<!-- Терминал создаётся скриптом /terminal.js -->
+<script src="/i118.js"></script>
 <script src="/terminal.js"></script>
 
 <script>
-(function () {
-  var dict = {
-    en: {
-      doc: '404 — Nestter',
-      title: 'Page not found',
-      note: 'The link may be outdated, or the page was moved.',
-      home: 'Back to home'
-    },
-    ru: {
-      doc: '404 — Nestter',
-      title: 'Страница не найдена',
-      note: 'Ссылка могла устареть, или страницу перенесли.',
-      home: 'На главную'
-    }
-  };
-
-  // Тот же выбор языка, что и на главной: сохранённый, иначе по языку браузера
-  var lang = 'en';
-  try {
-    var saved = localStorage.getItem('lang');
-    if (saved === 'en' || saved === 'ru') lang = saved;
-    else if ((navigator.language || '').toLowerCase().indexOf('ru') === 0) lang = 'ru';
-  } catch (e) {
-    if ((navigator.language || '').toLowerCase().indexOf('ru') === 0) lang = 'ru';
-  }
-
-  var d = dict[lang];
-  document.documentElement.lang = lang;
-  document.title = d.doc;
-  document.querySelectorAll('[data-i18n]').forEach(function (el) {
-    var key = el.getAttribute('data-i18n');
-    if (d[key] !== undefined) el.textContent = d[key];
-  });
-})();
 
   // --- Терминал: движок в /terminal.js, здесь только команды этой страницы ---
   if (window.Terminal) {

@@ -1,8 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="home">
 <head>
 <link rel="icon" type="image/webp" href="images/previcon.webp">
 <meta charset="UTF-8">
+
+<!-- Язык + анти-FOUC: до первого рендера -->
+<script>
+(function () {
+  var lang = 'en';
+  try {
+    var s = localStorage.getItem('lang');
+    if (s === 'en' || s === 'ru') lang = s;
+    else lang = (navigator.language || '').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en';
+  } catch (e) {}
+  document.documentElement.lang = lang;
+  document.documentElement.classList.add('i18n-loading');
+  setTimeout(function () {
+    document.documentElement.classList.remove('i18n-loading');
+  }, 2500);
+})();
+</script>
+<style>html.i18n-loading body { visibility: hidden; }</style>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Nestter — 3D modeler. Weapons, vehicles, props and characters. Close for commissions. Portfolio and key links.">
 <title>Nestter</title>
@@ -748,7 +767,7 @@ I am available for short-term collaborations or one-off commissions.
       <div class="projects-list">
 
 	<!-- Карточка с игрой Дока (Док) -->
-        <a class="proj has-bg" href="https://t.me/+3oyIM7yjxxtjNzMy" target="_blank" style="--bg: url('images/DOC.webp')">
+        <a class="proj has-bg" href="https://t.me/+3oyIM7yjxxtjNzMy" target="_blank" rel="noopener noreferrer" style="--bg: url('images/DOC.webp')">
           <div class="proj-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="15.5" cy="11.5" r=".7"/><circle cx="18" cy="13.5" r=".7"/></svg></div>
           <div class="proj-body">
             <div class="proj-hd">
@@ -762,7 +781,7 @@ I am available for short-term collaborations or one-off commissions.
         </a>
 
 	<!-- Карточка с Artifice -->
-        <a class="proj has-bg" href="https://github.com/iron431/irons-artifice" target="_blank" style="--bg: url('images/irons.webp')">
+        <a class="proj has-bg" href="https://github.com/iron431/irons-artifice" target="_blank" rel="noopener noreferrer" style="--bg: url('images/irons.webp')">
           <div class="proj-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div>
           <div class="proj-body">
             <div class="proj-hd">
@@ -781,7 +800,7 @@ I am available for short-term collaborations or one-off commissions.
 
     <!-- Странички -->
       <!-- ArtStation -->
-      <a class="link-btn" href="https://artstation.com/nestter" target="_blank">
+      <a class="link-btn" href="https://artstation.com/nestter" target="_blank" rel="noopener noreferrer">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.164-1.333H9.419L21.598 22.54l1.92-3.325c.318-.499.482-1.08.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/>
@@ -791,7 +810,7 @@ I am available for short-term collaborations or one-off commissions.
       </a>
 
       <!-- Sketchfab -->
-      <a class="link-btn" href="https://sketchfab.com/nestter" target="_blank">
+      <a class="link-btn" href="https://sketchfab.com/nestter" target="_blank" rel="noopener noreferrer">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Sketchfab</title><path d="M11.3 0A11.983 11.983 0 0 0 .037 11a13.656 13.656 0 0 0 0 2 11.983 11.983 0 0 0 11.29 11h1.346a12.045 12.045 0 0 0 11.3-11.36 13.836 13.836 0 0 0 0-1.7A12.049 12.049 0 0 0 12.674 0zM15 6.51l2.99 1.74s-6.064 3.24-6.084 3.24S5.812 8.27 5.8 8.26l2.994-1.77 2.992-1.76zm-6.476 5.126L11 13v5.92l-2.527-1.4-2.46-1.43v-5.76zm9.461 1.572v2.924L15.5 17.574 13 19.017v-6.024l2.489-1.345 2.5-1.355z"/></svg>
         </div>
@@ -799,7 +818,7 @@ I am available for short-term collaborations or one-off commissions.
       </a>
 
       <!-- X / Twitter -->
-      <a class="link-btn" href="https://x.com/nesttter" target="_blank">
+      <a class="link-btn" href="https://x.com/nesttter" target="_blank" rel="noopener noreferrer">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -809,7 +828,7 @@ I am available for short-term collaborations or one-off commissions.
       </a>
 
       <!-- Discord -->
-      <a class="link-btn" href="https://discord.com/invite/2hjsyx7rp4" target="_blank">
+      <a class="link-btn" href="https://discord.com/invite/2hjsyx7rp4" target="_blank" rel="noopener noreferrer">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Discord</title><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
         </div>
@@ -817,7 +836,7 @@ I am available for short-term collaborations or one-off commissions.
       </a>
 
       <!-- VK -->
-      <a class="link-btn" href="https://vk.ru/id568908586" target="_blank">
+      <a class="link-btn" href="https://vk.ru/id568908586" target="_blank" rel="noopener noreferrer">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>VK</title><path d="m9.489.004.729-.003h3.564l.73.003.914.01.433.007.418.011.403.014.388.016.374.021.36.025.345.03.333.033c1.74.196 2.933.616 3.833 1.516.9.9 1.32 2.092 1.516 3.833l.034.333.029.346.025.36.02.373.025.588.012.41.013.644.009.915.004.98-.001 3.313-.003.73-.01.914-.007.433-.011.418-.014.403-.016.388-.021.374-.025.36-.03.345-.033.333c-.196 1.74-.616 2.933-1.516 3.833-.9.9-2.092 1.32-3.833 1.516l-.333.034-.346.029-.36.025-.373.02-.588.025-.41.012-.644.013-.915.009-.98.004-3.313-.001-.73-.003-.914-.01-.433-.007-.418-.011-.403-.014-.388-.016-.374-.021-.36-.025-.345-.03-.333-.033c-1.74-.196-2.933-.616-3.833-1.516-.9-.9-1.32-2.092-1.516-3.833l-.034-.333-.029-.346-.025-.36-.02-.373-.025-.588-.012-.41-.013-.644-.009-.915-.004-.98.001-3.313.003-.73.01-.914.007-.433.011-.418.014-.403.016-.388.021-.374.025-.36.03-.345.033-.333c.196-1.74.616-2.933 1.516-3.833.9-.9 2.092-1.32 3.833-1.516l.333-.034.346-.029.36-.025.373-.02.588-.025.41-.012.644-.013.915-.009ZM6.79 7.3H4.05c.13 6.24 3.25 9.99 8.72 9.99h.31v-3.57c2.01.2 3.53 1.67 4.14 3.57h2.84c-.78-2.84-2.83-4.41-4.11-5.01 1.28-.74 3.08-2.54 3.51-4.98h-2.58c-.56 1.98-2.22 3.78-3.8 3.95V7.3H10.5v6.92c-1.6-.4-3.62-2.34-3.71-6.92Z"/></svg>
         </div>
@@ -826,7 +845,7 @@ I am available for short-term collaborations or one-off commissions.
 
 
       <!-- Boosty -->
-      <a class="link-btn" href="https://boosty.to/nestter" target="_blank">
+      <a class="link-btn" href="https://boosty.to/nestter" target="_blank" rel="noopener noreferrer">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Boosty</title><path d="M2.661 14.337 6.801 0h6.362L11.88 4.444l-.038.077-3.378 11.733h3.15c-1.321 3.289-2.35 5.867-3.086 7.733-5.816-.063-7.442-4.228-6.02-9.155M8.554 24l7.67-11.035h-3.25l2.83-7.073c4.852.508 7.137 4.33 5.791 8.952C20.16 19.81 14.344 24 8.68 24h-.127z"/></svg>
         </div>
@@ -834,7 +853,7 @@ I am available for short-term collaborations or one-off commissions.
       </a>
 
       <!-- CurseForge -->
-      <a class="link-btn" href="https://www.curseforge.com/members/nestter/projects" target="_blank">
+      <a class="link-btn" href="https://www.curseforge.com/members/nestter/projects" target="_blank" rel="noopener noreferrer">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>CurseForge</title><path d="M18.326 9.2145S23.2261 8.4418 24 6.1882h-7.5066V4.4H0l2.0318 2.3576V9.173s5.1267-.2665 7.1098 1.2372c2.7146 2.516-3.053 5.917-3.053 5.917L5.0995 19.6c1.5465-1.4726 4.494-3.3775 9.8983-3.2857-2.0565.65-4.1245 1.6651-5.7344 3.2857h10.9248l-1.0288-3.2726s-7.918-4.6688-.8336-7.1127z"/></svg>
         </div>
@@ -842,14 +861,14 @@ I am available for short-term collaborations or one-off commissions.
       </a>
 
       <!-- Modrinth -->
-      <a class="link-btn" href="https://modrinth.com/user/Nestter" target="_blank">
+      <a class="link-btn" href="https://modrinth.com/user/Nestter" target="_blank" rel="noopener noreferrer">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Modrinth</title><path d="M12.252.004a11.78 11.768 0 0 0-8.92 3.73 11 10.999 0 0 0-2.17 3.11 11.37 11.359 0 0 0-1.16 5.169c0 1.42.17 2.5.6 3.77.24.759.77 1.899 1.17 2.529a12.3 12.298 0 0 0 8.85 5.639c.44.05 2.54.07 2.76.02.2-.04.22.1-.26-1.7l-.36-1.37-1.01-.06a8.5 8.489 0 0 1-5.18-1.8 5.34 5.34 0 0 1-1.3-1.26c0-.05.34-.28.74-.5a37.572 37.545 0 0 1 2.88-1.629c.03 0 .5.45 1.06.98l1 .97 2.07-.43 2.06-.43 1.47-1.47c.8-.8 1.48-1.5 1.48-1.52 0-.09-.42-1.63-.46-1.7-.04-.06-.2-.03-1.02.18-.53.13-1.2.3-1.45.4l-.48.15-.53.53-.53.53-.93.1-.93.07-.52-.5a2.7 2.7 0 0 1-.96-1.7l-.13-.6.43-.57c.68-.9.68-.9 1.46-1.1.4-.1.65-.2.83-.33.13-.099.65-.579 1.14-1.069l.9-.9-.7-.7-.7-.7-1.95.54c-1.07.3-1.96.53-1.97.53-.03 0-2.23 2.48-2.63 2.97l-.29.35.28 1.03c.16.56.3 1.16.31 1.34l.03.3-.34.23c-.37.23-2.22 1.3-2.84 1.63-.36.2-.37.2-.44.1-.08-.1-.23-.6-.32-1.03-.18-.86-.17-2.75.02-3.73a8.84 8.839 0 0 1 7.9-6.93c.43-.03.77-.08.78-.1.06-.17.5-2.999.47-3.039-.01-.02-.1-.02-.2-.03Zm3.68.67c-.2 0-.3.1-.37.38-.06.23-.46 2.42-.46 2.52 0 .04.1.11.22.16a8.51 8.499 0 0 1 2.99 2 8.38 8.379 0 0 1 2.16 3.449 6.9 6.9 0 0 1 .4 2.8c0 1.07 0 1.27-.1 1.73a9.37 9.369 0 0 1-1.76 3.769c-.32.4-.98 1.06-1.37 1.38-.38.32-1.54 1.1-1.7 1.14-.1.03-.1.06-.07.26.03.18.64 2.56.7 2.78l.06.06a12.07 12.058 0 0 0 7.27-9.4c.13-.77.13-2.58 0-3.4a11.96 11.948 0 0 0-5.73-8.578c-.7-.42-2.05-1.06-2.25-1.06Z"/></svg>
         </div>
         <span class="link-label">Modrinth</span>
       </a>
       <!-- GitHub -->
-      <a class="link-btn" href="https://github.com/nestter" target="_blank">
+      <a class="link-btn" href="https://github.com/nestter" target="_blank" rel="noopener noreferrer">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Git</title><path d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/></svg>
         </div>
@@ -867,6 +886,9 @@ I am available for short-term collaborations or one-off commissions.
   <span data-i18n="warn">⚠️ Your browser is outdated. Some design elements (such as glass effects, images and fonts) may not display correctly. Please update your browser.</span>
   <button onclick="document.getElementById('browser-warning').style.display='none'">✕</button>
 </div>
+<script src="i118.js"></script>
+<script src="terminal.js"></script>
+<script src="other.js"></script>
 
   <!-- INTHERNET EXPLORER 11 ПРЕДУПРЕЖДЕНИЕ -->
 <!--[if IE]>
@@ -874,9 +896,6 @@ I am available for short-term collaborations or one-off commissions.
     <span>⚠️ Вы используете устаревший Internet Explorer. Сайт может отображаться некорректно. Пожалуйста, скачайте современный браузер.</span>
   </div> 
 <![endif]-->
-
-  <!-- Терминал создаётся скриптом terminal.js -->
-<script src="terminal.js"></script>
 
 <script>
   // Падающие лепестки
@@ -944,88 +963,10 @@ I am available for short-term collaborations or one-off commissions.
     if (w) w.style.display = 'flex';
   }
 
-    // Переключение языка (EN / RU)
-  (function () {
-    const dict = {
-      en: {
-        title: 'Nestter',
-        desc: 'Nestter — 3D modeler. Weapons, vehicles, props and characters. Close for commissions. Portfolio and key links.',
-        tag: '3D Modeler &nbsp;·&nbsp; Close for orders',
-        bio: 'Let’s get acquainted, traveler! In my free time, I model various inanimate objects (vehicles, weapons, props), create my own characters, and do a bit of drawing.\nI am available for short-term collaborations or one-off commissions.',
-        projects: 'Projects',
-        projects_sub: 'currently involved in',
-        st_work: 'In progress',
-        st_hold: 'On hold',
-        role_3d: '3D modeler',
-        role_tr: 'Translator',
-        desc_nec: 'Weapons, vehicles, props',
-        desc_irons: 'Translating the mod into Russian',
-        type_game: 'video game',
-        type_mod: 'Minecraft mod',
-        footer: '© nestter · 3D modeler',
-        warn: '⚠️ Your browser is outdated. Some design elements (such as glass effects, images and fonts) may not display correctly. Please update or replace your browser.',
-        sun: 'The Sun has returned...' // 
-      },
-      ru: {
-        title: 'Nestter',
-        desc: 'Nestter — 3D-моделлер. Оружие, транспорт, пропсы и персонажи. Закрыт для заказов. Портфолио и основные ссылки.',
-        tag: '3D-моделлер &nbsp;·&nbsp; Закрыт для заказов',
-        bio: 'Давай знакомиться, путник! В свободное время я моделирую разные неодушевлённые объекты (транспорт, оружие, пропы), создаю собственных персонажей и немного рисую.\nДоступен для временного найма и разовых заказов.',
-        projects: 'Проекты',
-        projects_sub: 'в которых участвую',
-        st_work: 'В процессе',
-        st_hold: 'Перерыв',
-        role_3d: '3D-моделлер',
-        role_tr: 'Переводчик',
-        desc_nec: 'Оружие, транспорт, пропы',
-        desc_irons: 'Перевод мода на русский язык',
-        type_game: 'Видеоигра',
-        type_mod: 'Minecraft мод',
-        footer: '© nestter · 3D-моделлер',
-        warn: '⚠️ Ваш браузер устарел. Некоторые элементы оформления (эффект стекла, изображения, шрифты) могут отображаться неправильно. Пожалуйста, обновите или замените браузер.',
-        sun: 'Солнце возвращено...' 
-      }
-    };
-
-    function detect() {
-      try {
-        const saved = localStorage.getItem('lang');
-        if (saved === 'en' || saved === 'ru') return saved;
-      } catch (e) {}
-      return (navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en';
-    }
-
-    function apply(lang) {
-      const d = dict[lang];
-      document.documentElement.lang = lang;
-      document.title = d.title;
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute('content', d.desc);
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        if (d[key] !== undefined) el.innerHTML = d[key];
-      });
-      document.querySelectorAll('.lang button').forEach(b => {
-        b.classList.toggle('active', b.dataset.lang === lang);
-        b.setAttribute('aria-pressed', b.dataset.lang === lang);
-      });
-    }
-      window.applyLang = apply;
-    document.querySelectorAll('.lang button').forEach(b => {
-      b.addEventListener('click', () => {
-        apply(b.dataset.lang);
-        try { localStorage.setItem('lang', b.dataset.lang); } catch (e) {}
-      });
-    });
-
-    apply(detect());
-  })();
-
   console.log("%cПривет, путник!", "color: #e8547a; font-size: 20px; font-weight: bold; font-family: 'Space Mono';");
   console.log("%cТы нашел секретку. Моё почтение за твой неподдельный интерес! Больше искать здесь нечего!", "color: #d0ccc8; font-size: 12px; font-family: 'Space Mono';");
   
 </script>
-<script src="other.js"></script>
 </body>
 </html>
 <!--
