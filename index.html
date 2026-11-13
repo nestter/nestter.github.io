@@ -588,7 +588,9 @@
     animation: fadeUp 1s ease 0.8s both;
       user-select: none;
       -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
       -moz-user-select: none;
+   touch-action: manipulation
   
   }
   
@@ -883,19 +885,31 @@ I am available for short-term collaborations or one-off commissions.
 
   <!-- Предупреждение о старом браузере -->
 <div id="browser-warning" class="browser-warning">
-  <span data-i18n="warn">⚠️ Your browser is outdated. Some design elements (such as glass effects, images and fonts) may not display correctly. Please update your browser.</span>
+  <span data-i18n="warn">⚠️ Your browser is outdated. Some design elements (such as glass effects, images and fonts) may not display correctly. Please update or replace your browser.<br>⚠️ Ваш браузер устарел. Некоторые элементы оформления могут отображаться неправильно. Пожалуйста, обновите или замените браузер.</span>
   <button onclick="document.getElementById('browser-warning').style.display='none'">✕</button>
 </div>
+
+<!-- Проверка браузера: только старый синтаксис (ES5) -->
+<script>
+  (function () {
+    var old = !window.CSS || !window.CSS.supports;
+    if (!old) {
+      var glass = CSS.supports('backdrop-filter', 'blur(10px)') || CSS.supports('-webkit-backdrop-filter', 'blur(10px)');
+      var ratio = CSS.supports('aspect-ratio', '4 / 3');
+      old = !glass || !ratio;
+    }
+    if (old) {
+      var w = document.getElementById('browser-warning');
+      if (w) w.style.display = 'flex';
+      // не заставляем старый браузер ждать, пока снимется «анти-мигание»
+      document.documentElement.className = document.documentElement.className.replace('i18n-loading', '');
+    }
+  })();
+</script>
+
 <script src="i118.js"></script>
 <script src="terminal.js"></script>
 <script src="other.js"></script>
-
-  <!-- INTHERNET EXPLORER 11 ПРЕДУПРЕЖДЕНИЕ -->
-<!--[if IE]>
-  <div class="browser-warning" style="display: flex;">
-    <span>⚠️ Вы используете устаревший Internet Explorer. Сайт может отображаться некорректно. Пожалуйста, скачайте современный браузер.</span>
-  </div> 
-<![endif]-->
 
 <script>
   // Падающие лепестки
@@ -933,35 +947,6 @@ I am available for short-term collaborations or one-off commissions.
   });
 
   startPetals();
-    // Проверка на поддержку современных CSS-фич (эффект стекла и пропорции)
-  function checkBrowserSupport() {
-    let isModern = true;
-
-    // Проверяем поддержку backdrop-filter (эффект матового стекла)
-    if (!window.CSS || !CSS.supports('backdrop-filter', 'blur(10px)') && !CSS.supports('-webkit-backdrop-filter', 'blur(10px)')) {
-      isModern = false;
-    }
-
-    // Проверяем поддержку aspect-ratio (пропорции картинок)
-    if (!window.CSS || !CSS.supports('aspect-ratio', '4 / 3')) {
-      isModern = false;
-    }
-
-    // Если браузер старый — показываем баннер
-    if (!isModern) {
-      const warning = document.getElementById('browser-warning');
-      warning.style.display = 'flex';
-    }
-  }
-
-  // Запускаем проверку после загрузки страницы
-  checkBrowserSupport();
-
-  // Работает даже в очень старых браузерах (только ES5, без стрелок и const)
-  if (!window.CSS || !window.CSS.supports) {
-    var w = document.getElementById('browser-warning');
-    if (w) w.style.display = 'flex';
-  }
 
   console.log("%cПривет, путник!", "color: #e8547a; font-size: 20px; font-weight: bold; font-family: 'Space Mono';");
   console.log("%cТы нашел секретку. Моё почтение за твой неподдельный интерес! Больше искать здесь нечего!", "color: #d0ccc8; font-size: 12px; font-family: 'Space Mono';");

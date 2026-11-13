@@ -4,7 +4,6 @@
   const RoomHTML = `
     <div id="sun" class="toast" style="display: none;">
       <span class="icon">💡</span>
-      <!-- ВОТ ЗДЕСЬ ДОБАВЛЕН data-i18n="sun" -->
       <span data-i18n="sun">The Sun has returned...</span> 
     </div>
 
@@ -142,19 +141,21 @@ if (window.applyLang) {
     });
   }
 
-  // 5. Открытие терминала тройным кликом по футеру
-  let secretClicks = 0;
+  // 5. Открытие терминала тройным кликом по копирайту
   const secretTrigger = document.querySelector('.footer');
   if (secretTrigger) {
+    let secretClicks = 0;
+    let secretTimer = null;
+
     secretTrigger.addEventListener('click', () => {
       secretClicks++;
+      clearTimeout(secretTimer);
+      secretTimer = setTimeout(() => { secretClicks = 0; }, 1000);
+
       if (secretClicks === 3 && window.termAPI) {
         window.termAPI.open();
         secretClicks = 0;
       }
-      setTimeout(() => { secretClicks = 0; }, 1000);
-
-      
     });
   }
 })();

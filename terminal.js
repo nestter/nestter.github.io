@@ -100,8 +100,13 @@
       if (!isDragging) return;
       
       // Плавно вычисляем новую позицию
-      var newX = Math.min(maxX, Math.max(minX, initialX + e.clientX - startX));
-      var newY = Math.min(maxY, Math.max(minY, initialY + e.clientY - startY));
+    var rafId = 0, nextX = 0, nextY = 0;
+    header.addEventListener('pointermove', function (e) {
+      if (!isDragging) return;
+      nextX = Math.min(maxX, Math.max(minX, initialX + e.clientX - startX));
+      nextY = Math.min(maxY, Math.max(minY, initialY + e.clientY - startY));
+      if (!rafId) rafId = requestAnimationFrame(function () { rafId = 0; setPos(nextX, nextY); });
+    });
       
       // requestAnimationFrame делает движение бархатным
       requestAnimationFrame(function() {
@@ -115,6 +120,7 @@
       header.releasePointerCapture(e.pointerId);
       header.classList.remove('dragging');
       input.focus();
+      cancelAnimationFrame(rafId); rafId = 0;
     });
 
     header.addEventListener('pointercancel', function (e) {
@@ -122,6 +128,7 @@
       isDragging = false;
       header.releasePointerCapture(e.pointerId);
       header.classList.remove('dragging');
+      cancelAnimationFrame(rafId); rafId = 0;
     });
 
     // --- вывод ---
