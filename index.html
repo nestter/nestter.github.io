@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-page="home">
 <head>
+  <link rel="alternate" hreflang="en" href="https://nestter.github.io/" />
+  <link rel="alternate" hreflang="ru" href="https://nestter.github.io/" />
+  <link rel="alternate" hreflang="x-default" href="https://nestter.github.io/" />
 <link rel="icon" type="image/webp" href="images/previcon.webp">
+<link rel="canonical" href="https://nestter.github.io/">
 <meta charset="UTF-8">
 
-<!-- Язык + анти-FOUC: до первого рендера -->
+<!-- Язык -->
 <script>
 (function () {
   var lang = 'en';
@@ -14,13 +18,34 @@
     else lang = (navigator.language || '').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en';
   } catch (e) {}
   document.documentElement.lang = lang;
-  document.documentElement.classList.add('i18n-loading');
-  setTimeout(function () {
-    document.documentElement.classList.remove('i18n-loading');
-  }, 2500);
 })();
 </script>
-<style>html.i18n-loading body { visibility: hidden; }</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Nestter",
+    "alternateName": ["Nestter 3D", "Nestter MC"],
+    "description": "3D Modeler creating weapons, vehicles, props, and characters for games.",
+    "url": "https://nestter.github.io/",
+    "jobTitle": "3D Modeler",
+    "knowsAbout": ["3D Modeling", "Game Assets", "Minecraft"],
+    "sameAs": [
+      "https://artstation.com/nestter",
+      "https://sketchfab.com/nestter",
+      "https://modrinth.com/user/Nestter",
+      "https://www.curseforge.com/members/nestter/projects",
+      "https://github.com/nestter",
+      "https://x.com/nesttter",
+      "https://vk.ru/id568908586",
+      "https://discord.com/invite/2hjsyx7rp4"
+    ]
+  }
+}
+</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Nestter — 3D modeler. Weapons, vehicles, props and characters. Close for commissions. Portfolio and key links.">
@@ -40,6 +65,7 @@
   <meta name="twitter:image" content="https://nestter.github.io/images/uaz.webp">
 
 <link rel="stylesheet" href="terminal.css">
+
 <style>
    /* --- ЛОКАЛЬНЫЕ ШРИФТЫ --- */
   
@@ -590,7 +616,7 @@
       -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
       -moz-user-select: none;
-   touch-action: manipulation
+   touch-action: manipulation;
   
   }
   
@@ -740,8 +766,8 @@
  
     <div class="deco-line"></div>
 
-    <div class="name">Nestter</div>
-    <div class="tag" data-i18n="tag">3D Modeler &nbsp;·&nbsp; Close for orders</div>
+    <h1 class="name">Nestter</h1>
+    <h2 class="tag" data-i18n="tag">3D Modeler &nbsp;·&nbsp; Close for orders</h2>
     <div class="divider"></div>
 
     <p class="bio" data-i18n="bio">
